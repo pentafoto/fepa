@@ -1,2 +1,2 @@
-fepa - fatturazione eleettronica
+fepa - fatturazione elettronica
 ====
