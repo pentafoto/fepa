@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN"
+    "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<!--
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html ng-app="fepaApp">
+	<head>
+		<title>FEPA - fatturazione elettronica</title>
+		<link rel="shortcut icon" href="favicon.ico" >
+		<script src="https://code.angularjs.org/1.2.24/angular.js"></script>
+		<script src="https://code.angularjs.org/1.2.24/angular-touch.js"></script>
+		<script src="angularjs/controller/controller.js"></script>
+		
+		<script src="angularjs/animate/angular-animate.js"></script>
+        <script src="angularjs/busy/angular-busy.js"></script>
+		<link href="angularjs/busy/angular-busy.css" rel="stylesheet">
+		
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="FEPA - Fatture Elettroniche per la Pubblica Amministrazione" />
+		<meta name="keywords" content="fatture, elettroniche, fatture elettroniche, operatori economici, codici, univoco, ipa" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.onvisible.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="no-sidebar">
+		<!-- Header -->
+			<div id="header">
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li>
+							  <a href="#">Ricerche</a>
+					  			<ul>
+									<li><a href="lo.html">per localit&agrave;</a></li>
+									<li><a href="in.html">per iniziale</a></li>
+									<li><a href="#">per codice fiscale</a></li>
+								</ul>
+							</li>
+							<li><a href="info.html">Info</a></li>
+						</ul>
+					</nav>
+			</div>
+		<!-- Main -->
+			<div class="wrapper style1">
+
+				<div class="container">
+					<article id="main" class="special">
+						<header>
+							<h2><a href="index.html">FEPA</a></h2>
+							<p>
+								fatturazione elettronica <br />
+								cerca per codice fiscale
+								
+							</p>
+						</header>
+						<section>
+							<p>
+							<div ng-controller="EntePerCodiceFiscale">
+                               <input type="text" ng-model="codiceFiscale" placeholder="codice fiscale"/>
+                               <button class="button" ng-click="doGreeting(codiceFiscale)">cerca</button><br />
+                               <div cg-busy="{promise:promise,templateUrl:templateUrl,message:message,backdrop:backdrop,delay:delay,minDuration:minDuration}">
+                              <div ng-show="amministrazione.cod_amm">
+								  <p><span ng-show="amministrazione.acronimo != 'null' && amministrazione.acronimo != ''">
+								     <strong>acronimo</strong><br />{{amministrazione.acronimo}}<br />
+									 </span>
+								     <strong>codice fiscale</strong><br />{{amministrazione.cf}}<br />
+								     <strong>indirizzo</strong><br />{{amministrazione.indirizzo}}-{{amministrazione.cap}} {{amministrazione.comune}} ({{amministrazione.provincia}}). {{amministrazione.regione}}<br />
+								     <strong>codice identificativo</strong><br />{{amministrazione.cod_amm}}<br />
+								     <strong>denominazione</strong><br />{{amministrazione.des_amm}}<br />
+								     <strong>mail</strong><br />{{amministrazione.mail1}} ({{amministrazione.tipo_mail1}})<br />
+									 <span ng-show="amministrazione.mail2 != 'null'">
+								     <strong>mail</strong><br />{{amministrazione.mail2}} ({{amministrazione.tipo_mail2}})<br />
+									 </span>
+									 <span ng-show="amministrazione.mail3 != 'null'">
+								     <strong>mail</strong><br />{{amministrazione.mail3}} ({{amministrazione.tipo_mail3}})<br />
+									 </span>
+									 <span ng-show="amministrazione.mail4 != 'null'">
+								     <strong>mail</strong><br />{{amministrazione.mail4}} ({{amministrazione.tipo_mail4}})<br />
+									 </span>
+									 <span ng-show="amministrazione.mail5 != 'null'">
+								     <strong>mail</strong><br />{{amministrazione.mail5}} ({{amministrazione.tipo_mail5}})<br />
+									 </span>
+									 <span ng-show="amministrazione.sito_istituzionale != 'null' && amministrazione.sito_istituzionale != ''">
+								     <strong>sito istituzionale</strong><br /><a ng-href="//{{amministrazione.sito_istituzionale}}" target="_blank">{{amministrazione.sito_istituzionale}}</a><br />
+								     </span>
+									 <span ng-show="amministrazione.url_facebook != 'null' && amministrazione.url_facebook != ''">
+								     <strong>facebook</strong><br /><a ng-href="//{{amministrazione.url_facebook}}" target="_blank">{{amministrazione.url_facebook}}</a><br />
+									 </span>
+									 <span ng-show="amministrazione.url_googleplus != 'null' && amministrazione.url_googleplus != ''">
+								     <strong>googleplus</strong><br /><a ng-href="//{{amministrazione.url_googleplus}}" target="_blank">{{amministrazione.url_googleplus}}</a><br />
+									 </span>
+									 <span ng-show="amministrazione.url_twitter != 'null' && amministrazione.url_twitter != ''">
+								     <strong>twitter</strong><br /><a ng-href="//{{amministrazione.url_twitter}}" target="_blank">{{amministrazione.url_twitter}}</a><br />
+									 </span>
+									 <span ng-show="amministrazione.url_youtube != 'null' && amministrazione.url_youtube != ''">
+								     <strong>youtube</strong><br /><a ng-href="//{{amministrazione.url_youtube}}" target="_blank">{{amministrazione.url_youtube}}</a>
+									 </span>
+								  </p>
+							   </div>
+							   </div>
+								 <div ng-controller="EntePerCodAmm" ng-show="amministrazione.cod_amm">
+								    <button class="button" ng-click="doGreeting(amministrazione.cod_amm)">codici uffici fatturazione elettronica</button><br />
+                                  <div cg-busy="{promise:promise,templateUrl:templateUrl,message:message,backdrop:backdrop,delay:delay,minDuration:minDuration}">
+								    
+								    <div ng-show="uffici">
+								    <div class="ufficio">
+								    <strong>sono stati trovati {{uffici.length}} uffici per l'Amministrazione {{amministrazione.cod_amm}}</strong><br />
+								    <div ng-show="(uffici.length > 3)"><input type="text" ng-model="affina.des_ou" placeholder="filtra risultati"></div>
+								    <ul>
+								       <li ng-repeat="ufficio in uffici | filter:affina" data-ng-class="{tableEven: !($index%2), tableOdd: ($index%2)}">
+								           <strong>codice idenfiticativo: </strong>{{ufficio.cod_ou}}<br />
+								           <strong>denominazione: </strong>{{ufficio.des_ou}}<br />
+								           <strong>codice univoco dell'ufficio: </strong> 
+								           <h3>{{ufficio.cod_uni_ou}}</h3> (da indicare nella fattura elettronica)
+								       </li>
+								    </ul>
+								    </div>
+									</div>
+									</div>
+									</div>
+								 </div>
+							</div>
+							</p>
+							</section>
+					</article>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+				
+					<div class="row">
+						<div class="12u">
+							<!-- Copyright -->
+								<div class="copyright">
+									<ul class="menu">
+										<li>&copy; fepa.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56263185-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>
